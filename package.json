@@ -1,0 +1,12 @@
+{
+  "name": "vue-countdown",
+  "version": "1.0.0",
+  "description": "VueJS 2.0 countdown component",
+  "author": "Danijel Maksimovic <maksimovic.danijel989@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vue", "countdown", "timer"],
+  "license": "ISC"
+}
