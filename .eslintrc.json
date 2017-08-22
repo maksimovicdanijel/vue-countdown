@@ -24,6 +24,11 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "keyword-spacing": [2, {
+            "before": true,
+            "after": true
+        }],
+        "no-console": 1
     }
 }

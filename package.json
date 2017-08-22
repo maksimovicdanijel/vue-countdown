@@ -1,8 +1,12 @@
 {
   "name": "vue-countdown",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "VueJS 2.0 countdown component",
   "author": "Danijel Maksimovic <maksimovic.danijel989@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maksimovicdanijel/vue-countdown"
+  },
   "main": "dist/vue-countdown.js",
   "scripts": {
     "build": "webpack",
@@ -16,12 +20,17 @@
   ],
   "license": "ISC",
   "devDependencies": {
+    "@types/webpack-notifier": "^1.5.1",
     "css-loader": "^0.28.5",
     "eslint": "^4.5.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.2.0",
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-notifier": "^1.5.0"
+  },
+  "dependencies": {
+    "easytimer": "^1.1.1"
   }
 }

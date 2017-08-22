@@ -1,8 +1,10 @@
 'use strict';
 
 var path = require('path');
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
+    plugins: [new WebpackNotifierPlugin],
     entry: './src/vue-countdown.vue',
     output: {
         path: path.resolve(__dirname, 'dist'),
