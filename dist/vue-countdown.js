@@ -79,8 +79,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_vue_countdown_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_571b4b7c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_vue_countdown_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_countdown_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_571b4b7c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_vue_countdown_vue__ = __webpack_require__(5);
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -94,7 +94,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_vue_countdown_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_vue_countdown_vue__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_571b4b7c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_vue_countdown_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
@@ -225,8 +225,10 @@ module.exports = function normalizeComponent (
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_easytimer__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_easytimer__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_easytimer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_easytimer__);
+//
+//
 //
 //
 //
@@ -243,15 +245,14 @@ module.exports = function normalizeComponent (
         message: String
     },
 
-    data () {
+    data: function data() {
         return {
             timer: null,
             time: '',
             label: this.message ? this.message : 'Time\'s up!'
         };
     },
-    
-    created () {
+    created: function created() {
         this.timer = new __WEBPACK_IMPORTED_MODULE_0_easytimer___default.a();
 
         this.timer.start({
@@ -267,12 +268,12 @@ module.exports = function normalizeComponent (
         this.timer.addEventListener('targetAchieved', this.onTimeExpire.bind(this));
     },
 
+
     methods: {
-        onTimeChange () {
+        onTimeChange: function onTimeChange() {
             this.time = this.timer.getTimeValues().toString();
         },
-
-        onTimeExpire () {
+        onTimeExpire: function onTimeExpire() {
             this.$emit('time-expire');
 
             this.time = this.label;
@@ -280,28 +281,8 @@ module.exports = function normalizeComponent (
     }
 });
 
-
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n    " + _vm._s(_vm.time) + "\n")])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-571b4b7c", esExports)
-  }
-}
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -368,7 +349,7 @@ var Timer = (
                 days: 86400000
             },
 
-            events = module && module.exports? __webpack_require__(5) : undefined,
+            events = module && module.exports? __webpack_require__(4) : undefined,
 
             prototype;
 
@@ -861,7 +842,7 @@ var Timer = (
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -1167,6 +1148,29 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "vue-countdown"
+  }, [_c('div', {
+    staticClass: "vue-countdown--time"
+  }, [_vm._v("\n        " + _vm._s(_vm.time) + "\n    ")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-571b4b7c", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

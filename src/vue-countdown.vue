@@ -1,6 +1,8 @@
 <template>
-    <div>
-        {{ time }}
+    <div class="vue-countdown">
+        <div class="vue-countdown--time">
+            {{ time }}
+        </div>
     </div>
 </template>
 
