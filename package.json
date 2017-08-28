@@ -1,5 +1,5 @@
 {
-  "name": "vue-countdown",
+  "name": "@dmaksimovic/vue-countdown",
   "version": "0.0.1",
   "description": "VueJS 2.0 countdown component",
   "author": "Danijel Maksimovic <maksimovic.danijel989@gmail.com>",
