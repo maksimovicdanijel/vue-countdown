@@ -1,41 +1,34 @@
 import Vue from 'vue';
-import Component from '../src/vue-countdown';
+import Countdown from '../src/vue-countdown';
+import {getVM} from './helpers';
 
 describe('Vue countdown component', () => {
-    it('should set passed label correctly', () => {
-        const Constructor = Vue.extend(Component);
-
-        const vm = new Constructor({
+    it('sets passed label correctly', () => {
+        const vm = getVM(Countdown, {
             propsData: {
                 message: 'Boom'
             }
-        }).$mount();
+        });
 
         expect(vm.$data.label).toBe('Boom');
     });
 
-    it('should initialize timer properly', () => {
-        const vm = new Vue({
-            el: document.createElement('div'),
-            render: createElement => createElement(Component, {
-                props: {
-                    seconds: 5
-                }
-            })
-        }).$mount();
+    it('initializes timer properly', () => {
+        const vm = getVM(Countdown, {
+            propsData: {
+                seconds: 5
+            }
+        });
 
         expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:00:05');
     });
 
-    it('should count to zero', (done) => {
-        const vm = new Vue({
-            el: document.createElement('div'),
-            render: createElement => createElement(Component, {
-                props: {
-                    seconds: 1
-                }
-            })
-        }).$mount();
+    it('counts to zero', (done) => {
+        const vm = getVM(Countdown, {
+            propsData: {
+                seconds: 1
+            }
+        });
 
         setTimeout(() => {
             expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('Time\'s up!');
