@@ -64,4 +64,20 @@ describe('Vue countdown component', () => {
             done();
         }, 1000);
     });
+
+    it('uses provided date as a countdown value', () => {
+        spyOn(Date, 'now').and.returnValue(Date.parse('Friday, 01-Sep-17 12:59:00'));
+
+        const vm = getVM(Countdown, {
+            propsData: {
+                date: 'Friday, 01-Sep-17 13:00:00'
+            }
+        });
+
+        expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:01:00');
+    });
+
+    it('throws an error when date is not valid');
+
+    it('throws an error when date is not in the future');
 });

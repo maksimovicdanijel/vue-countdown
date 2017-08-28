@@ -242,7 +242,8 @@ module.exports = function normalizeComponent (
     props: {
         seconds: Number,
         countdown: Boolean,
-        message: String
+        message: String,
+        date: String
     },
 
     data: function data() {
@@ -252,15 +253,42 @@ module.exports = function normalizeComponent (
             label: this.message ? this.message : 'Time\'s up!'
         };
     },
+
+
+    computed: {
+        parsedDate: function parsedDate() {
+            if (!this.date) {
+                return false;
+            }
+
+            return Date.parse(this.date);
+        }
+    },
+
     created: function created() {
         this.timer = new __WEBPACK_IMPORTED_MODULE_0_easytimer___default.a();
 
-        this.timer.start({
-            countdown: true,
-            startValues: {
-                seconds: this.seconds
-            }
-        });
+        var parsedDate = this.parsedDate;
+        var now = Date.now();
+
+        var seconds = this.seconds;
+        var timerOptions = {
+            countdown: true
+        };
+
+        if (!parsedDate && this.date) {
+            throw new Error('Please provide valid date');
+        }
+
+        if (now < parsedDate) {
+            seconds = (parsedDate - now) / 1000;
+        }
+
+        timerOptions.startValues = {
+            seconds: seconds
+        };
+
+        this.timer.start(timerOptions);
 
         this.time = this.timer.getTimeValues().toString();
 
