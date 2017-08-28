@@ -77,7 +77,14 @@ describe('Vue countdown component', () => {
         expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:01:00');
     });
 
-    it('throws an error when date is not valid');
+    it('uses passed units to format timer', () => {
+        const vm = getVM(Countdown, {
+            propsData: {
+                units: ['minutes', 'seconds'],
+                seconds: 10
+            }
+        });
 
-    it('throws an error when date is not in the future');
+        expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:10');
+    });
 });
