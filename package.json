@@ -18,7 +18,7 @@
     "countdown",
     "timer"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/karma": "^0.13.36",
     "@types/karma-jasmine": "0.0.29",
