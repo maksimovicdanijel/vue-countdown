@@ -36,4 +36,32 @@ describe('Vue countdown component', () => {
             done();
         }, 1000);
     });
+
+    it('triggers an event when timer has finished', (done) => {
+        const vm = new Vue({
+            methods: {
+                handleTimeExpire() {
+                    // should be called
+                }
+            },
+            render: h => h(Countdown, {
+                props: {
+                    seconds: 1
+                },
+                on: {
+                    'time-expire': vm.handleTimeExpire
+                }
+            })
+        })
+
+        spyOn(vm, 'handleTimeExpire');
+
+        vm.$mount();   
+
+        setTimeout(() => {
+            expect(vm.handleTimeExpire).toHaveBeenCalled();
+
+            done();
+        }, 1000);
+    });
 });
