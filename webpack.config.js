@@ -19,7 +19,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.vue$/,
-                loaders: ['vue-loader', 'eslint-loader', ],
+                loaders: ['vue-loader', 'eslint-loader'],
                 exclude: /node_modules/
             },
             {
