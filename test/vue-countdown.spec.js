@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue/dist/vue';
 import Countdown from '../src/vue-countdown';
 import {getVM} from './helpers';
 
@@ -86,5 +86,60 @@ describe('Vue countdown component', () => {
         });
 
         expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:10');
+    });
+
+    it('does not start timer if start is set to false', (done) => {
+        const vm = getVM(Countdown, {
+            propsData: {
+                seconds: 10,
+                start: false
+            }
+        });
+
+        setTimeout(() => {
+            expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:00:00');
+
+            done();
+        }, 1000);
+    });
+
+    it('starts counter when start prop changes to true', (done) => {
+        const vm = new Vue({
+            template: '<div><vue-countdown :seconds="10" :start="start"></vue-countdown></div>',
+            data: {
+                start: false
+            },
+            components: {
+                'vue-countdown': Countdown
+            }
+        }).$mount();
+
+        vm.start = true;
+
+        setTimeout(() => {
+            expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:00:09');
+
+            done();
+        }, 1500);
+    });
+
+    it('stops counter when start prop changes to false', (done) => {
+        const vm = new Vue({
+            template: '<div><vue-countdown :seconds="10" :start="start"></vue-countdown></div>',
+            data: {
+                start: true
+            },
+            components: {
+                'vue-countdown': Countdown
+            }
+        }).$mount();
+
+        vm.start = false;
+
+        setTimeout(() => {
+            expect(vm.$el.querySelector('.vue-countdown--time').textContent.trim()).toBe('00:00:10');
+
+            done();
+        }, 1000);
     });
 });

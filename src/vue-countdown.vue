@@ -15,7 +15,11 @@
             countdown: Boolean,
             message: String,
             date: String,
-            units: Array
+            units: Array,
+            start: {
+                type: Boolean,
+                default: true
+            }
         },
 
         data () {
@@ -23,7 +27,8 @@
                 timer: null,
                 time: '',
                 label: this.message ? this.message : 'Time\'s up!',
-                timerUnits: this.units ? this.units : ['hours', 'minutes', 'seconds']
+                timerUnits: this.units ? this.units : ['hours', 'minutes', 'seconds'],
+                timerOptions: {}
             };
         },
 
@@ -44,7 +49,7 @@
             const now = Date.now();
 
             let seconds = this.seconds;
-            let timerOptions = {
+            this.timerOptions = {
                 countdown: true
             };
 
@@ -56,11 +61,13 @@
                 seconds = (parsedDate - now) / 1000;
             }
 
-            timerOptions.startValues = {
+            this.timerOptions.startValues = {
                 seconds: seconds
             };
 
-            this.timer.start(timerOptions);
+            if (this.start) {
+                this.timer.start(this.timerOptions);
+            }
 
             this.time = this.timer.getTimeValues().toString(this.timerUnits);
 
@@ -77,6 +84,16 @@
                 this.$emit('time-expire');
 
                 this.time = this.label;
+            }
+        },
+
+        watch: {
+            start (newValue) {
+                if (newValue) {
+                    this.timer.start(this.timerOptions);
+                } else {
+                    this.timer.stop();
+                }
             }
         }
     };

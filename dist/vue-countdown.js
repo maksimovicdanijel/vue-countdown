@@ -244,7 +244,11 @@ module.exports = function normalizeComponent (
         countdown: Boolean,
         message: String,
         date: String,
-        units: Array
+        units: Array,
+        start: {
+            type: Boolean,
+            default: true
+        }
     },
 
     data: function data() {
@@ -252,7 +256,8 @@ module.exports = function normalizeComponent (
             timer: null,
             time: '',
             label: this.message ? this.message : 'Time\'s up!',
-            timerUnits: this.units ? this.units : ['hours', 'minutes', 'seconds']
+            timerUnits: this.units ? this.units : ['hours', 'minutes', 'seconds'],
+            timerOptions: {}
         };
     },
 
@@ -274,7 +279,7 @@ module.exports = function normalizeComponent (
         var now = Date.now();
 
         var seconds = this.seconds;
-        var timerOptions = {
+        this.timerOptions = {
             countdown: true
         };
 
@@ -286,11 +291,13 @@ module.exports = function normalizeComponent (
             seconds = (parsedDate - now) / 1000;
         }
 
-        timerOptions.startValues = {
+        this.timerOptions.startValues = {
             seconds: seconds
         };
 
-        this.timer.start(timerOptions);
+        if (this.start) {
+            this.timer.start(this.timerOptions);
+        }
 
         this.time = this.timer.getTimeValues().toString(this.timerUnits);
 
@@ -307,6 +314,16 @@ module.exports = function normalizeComponent (
             this.$emit('time-expire');
 
             this.time = this.label;
+        }
+    },
+
+    watch: {
+        start: function start(newValue) {
+            if (newValue) {
+                this.timer.start(this.timerOptions);
+            } else {
+                this.timer.stop();
+            }
         }
     }
 });
