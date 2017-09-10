@@ -14,7 +14,9 @@ Component.vue
 ```
 <template>
     <div>
-        <vue-countdown v-on:time-expire="handleTimeExpire" :seconds="10"></vue-countdown>
+        <vue-countdown v-on:time-expire="handleTimeExpire" :seconds="10" :start="start"></vue-countdown>
+
+        <button v-on:click="startTimer">Start timer</button>
     </div>
 </template>
 
@@ -23,12 +25,20 @@ import VueCountdown from '@dmaksimovic/vue-countdown';
 
 export default {
     name: 'my-component',
+    data () {
+        return {
+            start: false
+        };
+    },
     components: {
         'vue-countdown': VueCountdown
     },
     methods () {
         handleTimeExpire () {
             alert('Time is up!');
+        },
+        startTimer () {
+            this.start = true;
         }
     }
 }
@@ -46,6 +56,8 @@ This will create a simple component that will output countdown that starts from 
 **message** - message to display when counter finishes
 
 **units** - array that represents units which will form the counter. Possible values are 'hours', 'minutes', 'seconds'
+
+**start** - boolean value whether to start timer or not
 
 ### Events
 
