@@ -11,7 +11,7 @@ npm install @dmaksimovic/vue-countdown --save
 ### Example usage
 
 Component.vue
-```
+```js
 <template>
     <div>
         <vue-countdown v-on:time-expire="handleTimeExpire" :seconds="10" :start="start"></vue-countdown>
@@ -33,7 +33,7 @@ export default {
     components: {
         'vue-countdown': VueCountdown
     },
-    methods () {
+    methods: {
         handleTimeExpire () {
             alert('Time is up!');
         },
